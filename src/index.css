@@ -3,43 +3,24 @@
 @tailwind utilities;
 
 @layer {
-  .navlist ul li {
-    position: absolute;
-    width: 95px;
-    display: flex;
-    align-items: center;
-    transform-origin: right center;
+  @keyframes spinR {
+    to {
+      transform: rotate(360deg);
+    }
   }
-  .navlist ul li:nth-child(1) {
-    --item: 0;
-    transform: rotate(calc((360deg / 8) * var(--item)));
+  .animate-spinRight {
+    animation: spinR 4s linear infinite;
   }
-  .navlist ul li:nth-child(2) {
-    --item: 1;
-    transform: rotate(calc((360deg / 8) * var(--item)));
+  @keyframes spinL {
+    to {
+      transform: rotate(-360deg);
+      transform-origin: center;
+    }
   }
-  .navlist ul li:nth-child(3) {
-    --item: 2;
-    transform: rotate(calc((360deg / 8) * var(--item)));
+  .animate-spinLeft {
+    animation: spinL 4s linear infinite;
   }
-  .navlist ul li:nth-child(4) {
-    --item: 3;
-    transform: rotate(calc((360deg / 8) * var(--item)));
-  }
-  .navlist ul li:nth-child(5) {
-    --item: 4;
-    transform: rotate(calc((360deg / 8) * var(--item)));
-  }
-  .navlist ul li:nth-child(6) {
-    --item: 5;
-    transform: rotate(calc((360deg / 8) * var(--item)));
-  }
-  .navlist ul li:nth-child(7) {
-    --item: 6;
-    transform: rotate(calc((360deg / 8) * var(--item)));
-  }
-  .navlist ul li:nth-child(8) {
-    --item: 7;
-    transform: rotate(calc((360deg / 8) * var(--item)));
+  .animate-pause {
+    animation-play-state:paused;
   }
 }
