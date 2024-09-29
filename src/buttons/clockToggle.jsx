@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { useToggle } from '../ToggleContext';
 
 const ClockToggle = () => {
