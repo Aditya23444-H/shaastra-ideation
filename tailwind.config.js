@@ -7,7 +7,15 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.animate-pause': {
+          'animation-play-state': 'paused', // Pause utility
+        },
+      });
+    },
+  ],
 }
 
 
