@@ -1,23 +1,28 @@
 // src/components/CircularNavbar.jsx
 import React from 'react';
-import { FaHome, FaSearch, FaUser, FaCog, FaInfoCircle } from 'react-icons/fa'; // Optional: Using React Icons
 
-const CircularNavbar = () => {
+const Clock = () => {
   const menuItems = [
-    { icon: <FaHome />, label: 'Home', link: '/' },
-    { icon: <FaSearch />, label: 'Search', link: '/search' },
-    { icon: <FaUser />, label: 'Profile', link: '/profile' },
-    { icon: <FaCog />, label: 'Settings', link: '/settings' },
-    { icon: <FaInfoCircle />, label: 'About', link: '/about' },
-    { icon: <FaInfoCircle />, label: 'About', link: '/about' },
+      { icon: 3, link: '/3' },
+      { icon: 4, link: '/4' },
+      { icon: 5, link: '/5' },
+      { icon: 6, link: '/6' },
+      { icon: 7, link: '/7' },
+      { icon: 8, link: '/8' },
+      { icon: 9, link: '/9' },
+      { icon: 10, link: '/10' },
+      { icon: 11, link: '/11' },
+      { icon: 12, link: '/12' },
+      { icon: 1, link: '/1' },
+      { icon: 2, link: '/2' },
   ];
 
-  const radius = 100; // Radius of the circular menu in pixels
+  const radius = 150; // Radius of the circular menu in pixels
 
   return (
-    <div className="relative w-64 group hover:animate-pause h-64 mx-auto mt-20 animate-spinRight">
+    <div className="relative w-64  h-64 mx-auto">
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <a href="/" className="flex animate-spinLeft group-hover:animate-none items-center justify-center w-24 h-24 bg-blue-500 text-white rounded-full shadow-lg">
+        <a href="/" className="flex items-center justify-center w-52 h-52 bg-blue-500 text-white rounded-full shadow-lg">
           Me
         </a>
       </div>
@@ -38,7 +43,7 @@ const CircularNavbar = () => {
               transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`,
             }}
           >
-            <div className='animate-spinLeft group-hover:animate-none'>{item.icon}</div>
+            <div className='group-hover:animate-pause'>{item.icon}</div>
             {/* <span className="text-xs animate-spinLeft mt-1">{item.label}</span> */}
           </a>
         );
@@ -47,4 +52,5 @@ const CircularNavbar = () => {
   );
 };
 
-export default CircularNavbar;
+export default Clock;
+

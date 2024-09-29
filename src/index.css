@@ -8,19 +8,23 @@
       transform: rotate(360deg);
     }
   }
+
   .animate-spinRight {
     animation: spinR 4s linear infinite;
   }
+
   @keyframes spinL {
     to {
       transform: rotate(-360deg);
       transform-origin: center;
     }
   }
+
   .animate-spinLeft {
     animation: spinL 4s linear infinite;
   }
+
   .animate-pause {
-    animation-play-state:paused;
+    animation-play-state: paused;
   }
 }
