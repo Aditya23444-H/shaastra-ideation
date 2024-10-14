@@ -11,10 +11,12 @@ const [isClock,setIsClock] = useState(false);
 
   return (
   <ToggleContext.Provider value={{isClock,setIsClock}}>
-    <div><ClockToggle/></div>
-    <div className="w-full h-screen grid place-content-center">
-      {isClock===true? <Clock/> :
-      <TestMenuComponent/>}
+    <div className="bg-[#9701d0] h-screen overflow-y-hidden w-full">
+      <div><ClockToggle/></div>
+      <div className="w-full h-full place-content-center">
+        {isClock===true? <Clock/> :
+        <TestMenuComponent/>}
+      </div>
     </div>
   </ToggleContext.Provider> );
 };

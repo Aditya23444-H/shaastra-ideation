@@ -1,4 +1,5 @@
 // src/components/CircularNavbar.jsx
+import { min } from 'lodash';
 import {useState} from 'react';
 
 const Clock = () => {
@@ -26,12 +27,14 @@ const Clock = () => {
   return (
     <div className="relative w-64  h-64 mx-auto">
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="flex items-center justify-center w-52 h-52 bg-blue-500 text-white rounded-full shadow-lg">
-          <div className="absolute" style={{width:"104px", height:"5px", backgroundColor:"white",
+        <div className="flex items-center justify-center w-52 h-52 bg-[#501957] text-white rounded-full shadow-lg">
+          <div className="absolute" style={{width:"104px", height:"5px", backgroundColor:"#9701d0",
           transformOrigin:"100% 50%",
           transform:`rotate(${angle}deg)`,
+          transition:`transform`,
           top:"50%",
-          right:"50%"
+          right:"50%",
+          
           }}></div>
         </div>
       </div>
@@ -45,7 +48,7 @@ const Clock = () => {
           <div
             key={index}
             // href={item.link}
-            className="absolute  flex flex-col items-center justify-center w-16 h-16 bg-blue-400 text-white rounded-full shadow-lg transform transition-transform duration-300 hover:bg-blue-600"
+            className="absolute  flex flex-col items-center justify-center w-16 h-16 bg-[#7a1775] text-white rounded-full shadow-lg transform transition-transform duration-300 hover:bg-blue-600"
             style={{
               top: '50%',
               left: '50%',
