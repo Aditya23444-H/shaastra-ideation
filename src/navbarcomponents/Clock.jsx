@@ -1,5 +1,8 @@
 // src/components/CircularNavbar.jsx
 import {useEffect, useState} from 'react';
+import eventsData from '../../data.json';
+
+const eventsObject = eventsData.events;
 
 const Clock = () => {
   const menuItems = [
@@ -20,6 +23,7 @@ const Clock = () => {
   // const iconsBetweenAngle = 360/(menuItems.length);
   
   const [angle, setAngle] = useState(90);
+  const [eventList, setEventList] = useState(eventsObject["12"]);
 
   useEffect(() => {
     // console.log("angle+180",angle+180);
@@ -31,7 +35,12 @@ const Clock = () => {
   const radius = 150; // Radius of the circular menu in pixels
 
   return (
-    <div className="relative w-64  h-64 mx-auto">
+    <div className="relative w-64 h-64 mx-auto">
+      <div className="absolute top-[-50%] flex w-full justify-center">
+        { eventList.map((event, index) => {
+          return <div key={index} className='bg-blue-500 w-32 h-10 rounded-md text-white mr-3 flex justify-center items-center'>{event}</div>
+        })}
+      </div>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div className="flex items-center justify-center w-96 h-96 bg-blue-500 text-white rounded-full shadow-lg">
           <div className="absolute" style={{width:"104px", height:"5px", backgroundColor:"white",
@@ -60,6 +69,7 @@ const Clock = () => {
               transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`,
             }}
             onClick={() => {
+            setEventList(eventsObject[item.icon.toString()])
             setAngle((prevAngle) => {
               console.log(prevAngle);
               let previtemIcon;
@@ -90,13 +100,50 @@ const Clock = () => {
                   const diffAngle = ((item.icon) - previtemIcon)*30;
                   return (prevAngle+diffAngle)
                 }
-              }else{
-                previtemIcon = (prevAngle - 90)/30;
-                const diffAngle = ((item.icon) - previtemIcon)*30;
-                return (prevAngle+diffAngle)
+              }else if((prevAngle-360)%360 === 0 ){
+                previtemIcon = 9;
+                if(item.icon >0 && item.icon <4){
+                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
+                  return (prevAngle+diffAngle)
+                }else{
+                  const diffAngle = ((item.icon) - previtemIcon)*30;
+                  return (prevAngle+diffAngle)
+                }
+              }else if((prevAngle-330)%360 === 0){
+                previtemIcon = 8;
+                if(item.icon >0 && item.icon <3){
+                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
+                  return (prevAngle+diffAngle)
+                }else{
+                  const diffAngle = ((item.icon) - previtemIcon)*30;
+                  return (prevAngle+diffAngle)
+                }
+              }else if((prevAngle-300)%360 === 0){
+                previtemIcon = 7;
+                if(item.icon >0 && item.icon <2){
+                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
+                  return (prevAngle+diffAngle)
+                }else{
+                  const diffAngle = ((item.icon) - previtemIcon)*30;
+                  return (prevAngle+diffAngle)
+                }
               }
-            
-              
+              else{
+                let c=1;
+                for(let i=120; i<=270; i+=30){
+                  if((prevAngle -i)%360 === 0){
+                     previtemIcon = c;
+                     if(item.icon > c+6){
+                     const diffAngle = ((item.icon) - (previtemIcon+12))*30;
+                     return (prevAngle+diffAngle)
+                     }else{
+                    const diffAngle = ((item.icon) - (previtemIcon))*30;
+                     return (prevAngle+diffAngle)
+                     }
+                  }
+                  c++;
+                }
+              }
             }) 
 }}
           >
