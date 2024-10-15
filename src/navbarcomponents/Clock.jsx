@@ -1,6 +1,7 @@
 // src/components/CircularNavbar.jsx
 import {useEffect, useState} from 'react';
 
+
 const Clock = () => {
   const menuItems = [
       { icon: 3, link: '/3' },
@@ -17,15 +18,9 @@ const Clock = () => {
       { icon: 2, link: '/2' },
   ];
 
-  // const iconsBetweenAngle = 360/(menuItems.length);
   
   const [angle, setAngle] = useState(90);
-
-  useEffect(() => {
-    // console.log("angle+180",angle+180);
-    console.log("angle", angle);
-  },[angle])
-
+  const [actualAngle, setActualAngle] = useState(90);
 
 
   const radius = 150; // Radius of the circular menu in pixels
@@ -38,7 +33,7 @@ const Clock = () => {
           transformOrigin:"100% 50%",
           transition:`all 1s ease-in-out`,
           transform:`rotate(${angle}deg)`,
-          transition:`transform 1s`,
+          transition:"transform 1s",
           top:"50%",
           right:"50%",
           
@@ -65,40 +60,12 @@ const Clock = () => {
             setAngle((prevAngle) => {
               console.log(prevAngle);
               let previtemIcon;
-              if((prevAngle -30)%360 === 0) {
-                previtemIcon = 10;
-                if(item.icon >0 && item.icon <5){
-                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }else{
-                  const diffAngle = ((item.icon) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }
-              }else if((prevAngle -60)%360 === 0){
-                previtemIcon = 11;
-                if(item.icon >0 && item.icon <6){
-                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }else{
-                  const diffAngle = ((item.icon) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }
-              }else if((prevAngle -90)%360  === 0){
-                previtemIcon = 12;
-                if(item.icon >0 && item.icon <7){
-                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }else{
-                  const diffAngle = ((item.icon) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }
-              }else{
-                previtemIcon = (prevAngle - 90)/30;
-                const diffAngle = ((item.icon) - previtemIcon)*30;
-                return (prevAngle+diffAngle)
-              }
-            
-              
+              previtemIcon = (actualAngle - 90)/30;
+              let delta = (item.icon) - previtemIcon;
+              delta = (Math.abs(delta)<=6?delta:-(12-delta));
+              const diffAngle = (delta)*30;
+              setActualAngle(calcAngle-180)
+              return (prevAngle+ diffAngle )
             }) 
 }}
           >
