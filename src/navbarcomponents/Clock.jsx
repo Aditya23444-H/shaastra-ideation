@@ -1,6 +1,5 @@
 // src/components/CircularNavbar.jsx
-import { min } from 'lodash';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 const Clock = () => {
   const menuItems = [
@@ -22,13 +21,10 @@ const Clock = () => {
   
   const [angle, setAngle] = useState(90);
 
-  function shortestPathRotation(from, to) {
-    const delta = to - from;
-    console.log(delta);
-    if (delta > 180) return to - 360; // Rotate counterclockwise
-    if (delta < -180) return to + 360; // Rotate clockwise
-    return to; // No need for wraparound, just rotate
-  }
+  useEffect(() => {
+    // console.log("angle+180",angle+180);
+    console.log("angle", angle);
+  },[angle])
 
 
 
@@ -37,9 +33,10 @@ const Clock = () => {
   return (
     <div className="relative w-64  h-64 mx-auto">
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="flex items-center justify-center w-96 h-96 bg-[#501957] text-white rounded-full shadow-lg">
-          <div className="absolute" style={{width:"104px", height:"5px", backgroundColor:"#9701d0",
+        <div className="flex items-center justify-center w-96 h-96 bg-blue-500 text-white rounded-full shadow-lg">
+          <div className="absolute" style={{width:"104px", height:"5px", backgroundColor:"white",
           transformOrigin:"100% 50%",
+          transition:`all 1s ease-in-out`,
           transform:`rotate(${angle}deg)`,
           transition:`transform 1s`,
           top:"50%",
@@ -65,8 +62,45 @@ const Clock = () => {
               transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`,
             }}
             onClick={() => {
-              setAngle(180+shortestPathRotation(angle,calcAngle));
-            }}
+            setAngle((prevAngle) => {
+              console.log(prevAngle);
+              let previtemIcon;
+              if((prevAngle -30)%360 === 0) {
+                previtemIcon = 10;
+                if(item.icon >0 && item.icon <5){
+                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
+                  return (prevAngle+diffAngle)
+                }else{
+                  const diffAngle = ((item.icon) - previtemIcon)*30;
+                  return (prevAngle+diffAngle)
+                }
+              }else if((prevAngle -60)%360 === 0){
+                previtemIcon = 11;
+                if(item.icon >0 && item.icon <6){
+                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
+                  return (prevAngle+diffAngle)
+                }else{
+                  const diffAngle = ((item.icon) - previtemIcon)*30;
+                  return (prevAngle+diffAngle)
+                }
+              }else if((prevAngle -90)%360  === 0){
+                previtemIcon = 12;
+                if(item.icon >0 && item.icon <7){
+                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
+                  return (prevAngle+diffAngle)
+                }else{
+                  const diffAngle = ((item.icon) - previtemIcon)*30;
+                  return (prevAngle+diffAngle)
+                }
+              }else{
+                previtemIcon = (prevAngle - 90)/30;
+                const diffAngle = ((item.icon) - previtemIcon)*30;
+                return (prevAngle+diffAngle)
+              }
+            
+              
+            }) 
+}}
           >
             <div className='group-hover:animate-pause'>{item.icon}</div>
             {/* <span className="text-xs animate-spinLeft mt-1">{item.label}</span> */}
