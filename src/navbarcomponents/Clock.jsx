@@ -1,6 +1,9 @@
 // src/components/CircularNavbar.jsx
 import {useEffect, useState} from 'react';
+import eventsData from '../utils/data.json';
+import { clockFunction } from '../utils/clockFunction';
 
+const eventsObject = eventsData.events;
 
 const Clock = () => {
   const menuItems = [
@@ -20,14 +23,24 @@ const Clock = () => {
 
   
   const [angle, setAngle] = useState(90);
-  const [actualAngle, setActualAngle] = useState(90);
-  const [prevItemIcon,setPrevItemIcon] = useState(12);
+  const [eventList, setEventList] = useState(eventsObject["12"]);
+
+  useEffect(() => {
+    // console.log("angle+180",angle+180);
+    console.log("angle", angle);
+  },[angle])
+
 
 
   const radius = 150; // Radius of the circular menu in pixels
 
   return (
-    <div className="relative w-64  h-64 mx-auto">
+    <div className="relative w-64 h-64 mx-auto">
+      <div className="absolute top-[-50%] flex w-full justify-center">
+        { eventList.map((event, index) => {
+          return <div key={index} className='bg-blue-500 w-32 h-10 rounded-md text-white mr-3 flex justify-center items-center'>{event}</div>
+        })}
+      </div>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <div className="flex items-center justify-center w-96 h-96 bg-blue-500 text-white rounded-full shadow-lg">
           <div className="absolute" style={{width:"104px", height:"5px", backgroundColor:"white",
@@ -58,19 +71,9 @@ const Clock = () => {
               transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`,
             }}
             onClick={() => {
+            setEventList(eventsObject[item.icon.toString()])
             setAngle((prevAngle) => {
-              // console.log(prevAngle);
-              // let prevItemIcon;
-              // previtemIcon = (actualAngle - 90)/30;
-              let delta = (item.icon) - prevItemIcon;
-              delta = (Math.abs(delta)<=6?delta:-(12-delta));
-              const diffAngle = (delta)*30;
-              // setActualAngle(calcAngle-180)
-              console.log(item.icon);
-              console.log(prevItemIcon);
-              setPrevItemIcon(item.icon);
-              console.log(prevItemIcon);
-              return (prevAngle + diffAngle )
+               return clockFunction(prevAngle, item.icon)
             }) 
 }}
           >
