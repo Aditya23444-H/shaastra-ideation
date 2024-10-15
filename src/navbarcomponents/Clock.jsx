@@ -21,6 +21,7 @@ const Clock = () => {
   
   const [angle, setAngle] = useState(90);
   const [actualAngle, setActualAngle] = useState(90);
+  const [prevItemIcon,setPrevItemIcon] = useState(12);
 
 
   const radius = 150; // Radius of the circular menu in pixels
@@ -58,14 +59,18 @@ const Clock = () => {
             }}
             onClick={() => {
             setAngle((prevAngle) => {
-              console.log(prevAngle);
-              let previtemIcon;
-              previtemIcon = (actualAngle - 90)/30;
-              let delta = (item.icon) - previtemIcon;
+              // console.log(prevAngle);
+              // let prevItemIcon;
+              // previtemIcon = (actualAngle - 90)/30;
+              let delta = (item.icon) - prevItemIcon;
               delta = (Math.abs(delta)<=6?delta:-(12-delta));
               const diffAngle = (delta)*30;
-              setActualAngle(calcAngle-180)
-              return (prevAngle+ diffAngle )
+              // setActualAngle(calcAngle-180)
+              console.log(item.icon);
+              console.log(prevItemIcon);
+              setPrevItemIcon(item.icon);
+              console.log(prevItemIcon);
+              return (prevAngle + diffAngle )
             }) 
 }}
           >
@@ -79,4 +84,3 @@ const Clock = () => {
 };
 
 export default Clock;
-
