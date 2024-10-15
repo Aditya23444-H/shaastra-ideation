@@ -22,16 +22,26 @@ const Clock = () => {
   
   const [angle, setAngle] = useState(90);
 
+  function shortestPathRotation(from, to) {
+    const delta = to - from;
+    console.log(delta);
+    if (delta > 180) return to - 360; // Rotate counterclockwise
+    if (delta < -180) return to + 360; // Rotate clockwise
+    return to; // No need for wraparound, just rotate
+  }
+
+
+
   const radius = 150; // Radius of the circular menu in pixels
 
   return (
     <div className="relative w-64  h-64 mx-auto">
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="flex items-center justify-center w-52 h-52 bg-[#501957] text-white rounded-full shadow-lg">
+        <div className="flex items-center justify-center w-96 h-96 bg-[#501957] text-white rounded-full shadow-lg">
           <div className="absolute" style={{width:"104px", height:"5px", backgroundColor:"#9701d0",
           transformOrigin:"100% 50%",
           transform:`rotate(${angle}deg)`,
-          transition:`transform`,
+          transition:`transform 1s`,
           top:"50%",
           right:"50%",
           
@@ -40,9 +50,9 @@ const Clock = () => {
       </div>
 
       {menuItems.map((item, index) => {
-        const angle = (index / menuItems.length) * 360;
-        const x = radius * Math.cos((angle * Math.PI) / 180);
-        const y = radius * Math.sin((angle * Math.PI) / 180);
+        const calcAngle = (index / menuItems.length) * 360;
+        const x = radius * Math.cos((calcAngle * Math.PI) / 180);
+        const y = radius * Math.sin((calcAngle * Math.PI) / 180);
 
         return (
           <div
@@ -55,7 +65,7 @@ const Clock = () => {
               transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`,
             }}
             onClick={() => {
-              setAngle(angle+180);
+              setAngle(180+shortestPathRotation(angle,calcAngle));
             }}
           >
             <div className='group-hover:animate-pause'>{item.icon}</div>
