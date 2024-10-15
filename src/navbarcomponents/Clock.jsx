@@ -1,6 +1,7 @@
 // src/components/CircularNavbar.jsx
 import {useEffect, useState} from 'react';
-import eventsData from '../../data.json';
+import eventsData from '../utils/data.json';
+import { clockFunction } from '../utils/clockFunction';
 
 const eventsObject = eventsData.events;
 
@@ -71,79 +72,7 @@ const Clock = () => {
             onClick={() => {
             setEventList(eventsObject[item.icon.toString()])
             setAngle((prevAngle) => {
-              console.log(prevAngle);
-              let previtemIcon;
-              if((prevAngle -30)%360 === 0) {
-                previtemIcon = 10;
-                if(item.icon >0 && item.icon <5){
-                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }else{
-                  const diffAngle = ((item.icon) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }
-              }else if((prevAngle -60)%360 === 0){
-                previtemIcon = 11;
-                if(item.icon >0 && item.icon <6){
-                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }else{
-                  const diffAngle = ((item.icon) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }
-              }else if((prevAngle -90)%360  === 0){
-                previtemIcon = 12;
-                if(item.icon >0 && item.icon <7){
-                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }else{
-                  const diffAngle = ((item.icon) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }
-              }else if((prevAngle-360)%360 === 0 ){
-                previtemIcon = 9;
-                if(item.icon >0 && item.icon <4){
-                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }else{
-                  const diffAngle = ((item.icon) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }
-              }else if((prevAngle-330)%360 === 0){
-                previtemIcon = 8;
-                if(item.icon >0 && item.icon <3){
-                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }else{
-                  const diffAngle = ((item.icon) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }
-              }else if((prevAngle-300)%360 === 0){
-                previtemIcon = 7;
-                if(item.icon >0 && item.icon <2){
-                  const diffAngle = ((item.icon+12) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }else{
-                  const diffAngle = ((item.icon) - previtemIcon)*30;
-                  return (prevAngle+diffAngle)
-                }
-              }
-              else{
-                let c=1;
-                for(let i=120; i<=270; i+=30){
-                  if((prevAngle -i)%360 === 0){
-                     previtemIcon = c;
-                     if(item.icon > c+6){
-                     const diffAngle = ((item.icon) - (previtemIcon+12))*30;
-                     return (prevAngle+diffAngle)
-                     }else{
-                    const diffAngle = ((item.icon) - (previtemIcon))*30;
-                     return (prevAngle+diffAngle)
-                     }
-                  }
-                  c++;
-                }
-              }
+               return clockFunction(prevAngle, item.icon)
             }) 
 }}
           >
