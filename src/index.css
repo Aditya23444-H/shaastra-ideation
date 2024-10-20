@@ -3,6 +3,44 @@
 @tailwind utilities;
 
 @layer {
+  .font-bangers{
+    font-family: "Bangers", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  }
+  
+  .font-londring{
+    font-family: "Londrina Sketch", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  }
+
+  .font-inika{
+    font-family: "Inika", serif;
+  font-weight: 700;
+  font-style: normal;
+  }
+
+  .box-shadow{
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+  }
+
+  .text-border{
+    text-shadow: 7px 7px 0px #672391,15px 15px 0px   #a035ae ;
+  }
+
+  .text-border-small{
+    text-shadow: 7px 7px 0px #672391,7px 7px 0px   #a035ae ;
+  }
+
+  body::-webkit-scrollbar{
+    display:none;
+  }
+
+  body{
+    overflow-x:hidden
+  }
+  
   @keyframes spinR {
     to {
       transform: rotate(360deg);
