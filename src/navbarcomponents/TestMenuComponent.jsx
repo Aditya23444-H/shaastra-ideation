@@ -1,6 +1,4 @@
-// src/components/CircularNavbar.jsx
-import React from 'react';
-import { FaHome, FaSearch, FaUser, FaCog, FaInfoCircle } from 'react-icons/fa'; // Optional: Using React Icons
+import { FaHome, FaSearch, FaUser, FaCog, FaInfoCircle } from 'react-icons/fa';
 
 const TestMenuComponent = () => {
   const menuItems = [
@@ -17,8 +15,8 @@ const TestMenuComponent = () => {
   return (
     <div className="relative w-64 group hover:animate-pause h-64 mx-auto animate-spinRight">
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <a href="/" className="flex animate-spinLeft group-hover:animate-pause items-center justify-center w-96 h-96 bg-[#501957] text-white rounded-full shadow-lg">
-          Me
+        <a href="/" className="flex flex-col animate-spinLeft text-border-small group-hover:animate-pause items-center justify-center w-96 h-96 bg-p5 text-white text-3xl font-bold font-bangers rounded-full shadow-lg">
+          <span>Welcome</span><span>to</span><span>Shaastra &apos;25</span>
         </a>
       </div>
 

@@ -67,11 +67,13 @@ const Clock = () => {
       <div className="absolute top-[-50%] flex w-full justify-center">
         { eventList.map((event, index) => {
           return <div key={index} className='bg-[#501957] w-32 h-10 rounded-md text-white mr-3 flex justify-center items-center'>{event}</div>
+          return <div key={index} className='bg-p7a1 w-32 h-10 rounded-md text-white mr-3 flex justify-center items-center'>{event}</div>
         })}
       </div>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="flex  w-96 h-96 bg-[#501957] rounded-full shadow-lg">
-          <div className="absolute flex flex-row-reverse items-center justify-center" style={{
+        
+        <div className="flex items-center justify-center w-96 h-96 bg-p5 text-white rounded-full shadow-lg">
+          <div className="absolute" style={{width:"104px", height:"5px", backgroundColor:"white",
           transformOrigin:"100% 50%",
           transition:`all 1s ease-in-out`,
           transform:`rotate(${angle}deg)`,
@@ -94,7 +96,7 @@ const Clock = () => {
           <div
             key={index}
             // href={item.link}
-            className="absolute  flex flex-col items-center justify-center w-16 h-16 bg-[#7a1775] text-white rounded-full shadow-lg transform transition-transform duration-300 hover:bg-blue-600"
+            className="absolute  flex flex-col items-center justify-center w-16 h-16 bg-p7a1 text-white rounded-full shadow-lg transform transition-transform duration-300 hover:bg-blue-600"
             style={{
               top: '50%',
               left: '50%',
