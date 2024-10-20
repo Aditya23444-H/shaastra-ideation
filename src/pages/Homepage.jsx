@@ -3,7 +3,7 @@ import {motion} from "framer-motion";
 
 export default function Homepage() {
   return (
-    <div className="w-[70vw] h-full bg-[#45124d] relative box-border flex justify-start items-center p-6">
+    <div className="w-[100vw] h-full bg-p5 relative box-border flex justify-start items-center p-6">
       <motion.div
         variants={{
           hidden: { opacity: 0 },

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ToggleContext } from "./ToggleContext";
 import Homepage from "./pages/Homepage";
 import { useScroll, useTransform, motion } from "framer-motion";
@@ -6,10 +6,28 @@ import About from "./pages/About";
 import Timer from "./pages/Timer";
 import Footer from "./pages/Footer";
 import NavbarComponent from "./pages/NavbarComponent";
+import { div } from "framer-motion/client";
 
 const App = () => {
   const [isClock,setIsClock] = useState(false);
   const ref = useRef(null);
+  const [hasScrolled,setHasScrolled] = useState(false);
+
+  useEffect(()=>{
+    const handleScroll = () => {
+      const triggerPoint = window.innerHeight / 2;
+
+      if(window.scrollY >= triggerPoint){
+        setHasScrolled(true);
+      }else{
+        setHasScrolled(false);
+      }
+    }
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  },[])
 
   const {scrollYProgress} = useScroll({
     target:ref,
@@ -21,40 +39,32 @@ const App = () => {
   <ToggleContext.Provider value={{isClock,setIsClock}}>
     <section ref={ref} className="relative h-[400vh]"
     style={{ scrollBehavior: "smooth" }}>
-      <div className="flex sticky top-0 h-screen w-max bg-[#45124d]">
-      <motion.div
+      <div className="flex sticky top-0 h-screen w-max bg-p6">
+        
+          <motion.div
             variants={{
               hidden: { opacity:0, y:"100vh"},
               visible:{
                 opacity:1,
                 y:0,
                 transition:{
-                  duration:1, delay:3, type:"spring"
+                  duration:1, delay:4, type:"spring"
                 }
               }
             }}
+            style={hasScrolled?{transform:"translateX(-10%)"}:{x, left:"10%"}}
             initial="hidden"
             animate="visible"
-            className="w-[30vw] sticky left-0 h-full bg-[#45124d] z-20 flex box-shadow justify-center items-center">
-              <NavbarComponent/>
-            </motion.div>
-        <motion.div style={{x}} className="flex relative h-screen w-max">
+            className="w-[30vw] h-[30vw] absolute top-[20%] rounded-full bg-transparent backdrop-blur-md z-20 flex box-shadow justify-center items-center">
+            <NavbarComponent/>
+          </motion.div>
+          {hasScrolled&&
+          <div className="w-[15vw] h-screen bg-transparent backdrop-blur-md z-10 box-shadow "></div>
+          }
+          <motion.div style={{x}} className="flex relative h-screen w-[350vw]">
+        
+          {/* <div className="w-[500px] h-screen bg-red-100"></div>  */}
           <Homepage/>
-          {/* <motion.div 
-            variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-              when: "beforeChildren",
-              staggerChildren: 0.2,
-            },
-          },
-          }}
-          initial="hidden"
-          animate="visible"
-          className="w-[30vw] h-full rounded-tr-md rounded-br-md z-20 bg-p6 flex justify-center items-center"> */}
-          {/* </motion.div> */}
           <About/>
           <Timer/>
           <Footer/>

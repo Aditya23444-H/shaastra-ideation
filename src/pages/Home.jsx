@@ -8,7 +8,7 @@ const Home = () => {
     const {isClock,setIsClock} = useToggle()
 
     return (
-        <div className="bg-[#9701d0] h-full w-screen relative">
+        <div className="bg-p9 h-full w-screen relative">
             <div><ClockToggle/></div>
             <div className="w-full h-full place-content-center">
                 {isClock===true? <Clock/> :
