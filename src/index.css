@@ -48,7 +48,7 @@
   }
 
   .animate-spinRight {
-    animation: spinR 4s linear infinite;
+    animation: spinR 100s linear infinite;
   }
 
   @keyframes spinL {
@@ -59,7 +59,7 @@
   }
 
   .animate-spinLeft {
-    animation: spinL 4s linear infinite;
+    animation: spinL 100s linear infinite;
   }
 
   .animate-pause {

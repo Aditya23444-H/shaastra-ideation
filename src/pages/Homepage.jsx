@@ -1,7 +1,10 @@
 // import NavbarComponent from "./NavbarComponent";
 import {motion} from "framer-motion";
+import ShaastraLetters from "../animations/ShaastraLetters";
 
 export default function Homepage() {
+  const shaastra = ['S','H','A','A','S','T','R','A']
+
   return (
     <div className="w-[100vw] h-full bg-p5 relative box-border flex justify-start items-center p-6">
       <motion.div
@@ -68,103 +71,10 @@ export default function Homepage() {
           }
          }}
          className="w-full absolute h-full bg-p6 rounded-md flex justify-center items-center z-10">
-          <motion.span
-            variants={{
-              hidden: { opacity:0, y:"100vh" },
-              visible:{
-                opacity:1,
-                y:0,
-                transition: {
-                  duration:1, type:"spring"
-                }
-              }
-             }}
-           className="text-[220px] text-white font-bangers text-border mr-8">S</motion.span>
-          <motion.span 
-           variants={{
-            hidden: { opacity:0, y:"-100vh" },
-            visible:{
-              opacity:1,
-              y:0,
-              transition: {
-                duration:1, type:"spring"
-              }
-            }
-           }}
-           className="text-[220px] text-white font-bangers text-border mr-8">H</motion.span>
-          <motion.span 
-           variants={{
-            hidden: { opacity:0, y:"100vh" },
-            visible:{
-              opacity:1,
-              y:0,
-              transition: {
-                duration:1, type:"spring"
-              }
-            }
-           }}
-           className="text-[220px] text-white font-bangers text-border mr-8">A</motion.span>
-          <motion.span 
-           variants={{
-            hidden: { opacity:0, y:"-100vh" },
-            visible:{
-              opacity:1,
-              y:0,
-              transition: {
-                duration:1, type:"spring"
-              }
-            }
-           }}
-           className="text-[220px] text-white font-bangers text-border mr-8">A</motion.span>
-          <motion.span 
-           variants={{
-            hidden: { opacity:0, y:"100vh" },
-            visible:{
-              opacity:1,
-              y:0,
-              transition: {
-                duration:1, type:"spring"
-              }
-            }
-           }}
-           className="text-[220px] text-white font-bangers text-border mr-8">S</motion.span>
-          <motion.span 
-           variants={{
-            hidden: { opacity:0, y:"-100vh" },
-            visible:{
-              opacity:1,
-              y:0,
-              transition: {
-                duration:1, type:"spring"
-              }
-            }
-           }}
-           className="text-[220px] text-white font-bangers text-border mr-8">T</motion.span>
-          <motion.span 
-           variants={{
-            hidden: { opacity:0, y:"100vh" },
-            visible:{
-              opacity:1,
-              y:0,
-              transition: {
-                duration:1, type:"spring"
-              }
-            }
-           }}
-           className="text-[220px] text-white font-bangers text-border mr-8">R</motion.span>
-          <motion.span 
-           variants={{
-            hidden: { opacity:0, y:"-100vh" },
-            visible:{
-              opacity:1,
-              y:0,
-              transition: {
-                duration:1, type:"spring"
-              }
-            }
-           }}
-           className="text-[220px] text-white font-bangers text-border mr-8">A</motion.span>
-         </motion.div>
+          {shaastra.map((letter,index)=>{
+            return <ShaastraLetters letter={letter} index={index} key={index}/>
+          })}
+      </motion.div>
       </motion.div>
     </div>
   );
