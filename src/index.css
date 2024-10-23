@@ -11,6 +11,15 @@
 }
 
 @layer {
+  *{
+    cursor: none;
+  }
+  .bgImg {
+    background-image: url("./assets/bgImg.png");
+    background-size: 100vw;
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+  }
   .font-bangers {
     font-family: "Bangers", system-ui;
     font-weight: 400;

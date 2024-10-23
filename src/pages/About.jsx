@@ -41,7 +41,7 @@ export default function About() {
       ref={aboutRef} // Set the ref to track visibility
       initial={{ opacity: 0, x: 50 }} // Initial hidden state from the right
       animate={controls} // Animate using the controls
-      className="w-[70vw] h-full relative p-5 box-border flex flex-col"
+      className="w-[80vw] h-full relative p-5 box-border flex flex-col"
     >
       <h3 className="text-white text-7xl font-bangers text-border-small mb-4">
         ABOUT

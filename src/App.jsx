@@ -6,13 +6,14 @@ import About from "./pages/About";
 import Timer from "./pages/Timer";
 import Footer from "./pages/Footer";
 import NavbarComponent from "./pages/NavbarComponent";
-import MobileNavbar from "./navbarcomponents/MobileNavbar";
+import Cursor from "./cursor/Cursor";
+// import MobileNavbar from "./navbarcomponents/MobileNavbar";
 
 const App = () => {
   const [isClock, setIsClock] = useState(false);
   const ref = useRef(null);
   const refreshRef = useRef(null);
-  const [hasScrolled,setHasScrolled] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const [isMoved, setIsMoved] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
 
@@ -39,7 +40,7 @@ const App = () => {
     target: ref,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0px", "-210vw"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0px", "-200vw"]);
   // const t = hasScrolled?1:4;
   // console.log(hasScrolled);
 
@@ -47,13 +48,17 @@ const App = () => {
     <ToggleContext.Provider
       value={{ isClock, setIsClock, hasAnimated, setIsMoved, isMoved }}
     >
+      <Cursor/>
       <section
         ref={ref}
         className="relative h-[400vh]"
         style={{ scrollBehavior: "smooth" }}
       >
-        <div className="flex sticky top-0 h-screen bg-p6 w-max z-20">
-          {/* <motion.div
+        <div
+          className="flex sticky top-0 h-screen bg-p6 w-max z-20 bgImg"
+          
+        >
+          <motion.div
             className="w-min absolute rounded-full bg-transparent z-20 flex "
             animate={{
               x: isMoved ? 160 : 0, // Adjust the 100 value for the desired x-translation
@@ -63,22 +68,19 @@ const App = () => {
             onClick={() => setIsMoved(!isMoved)}
           >
             <NavbarComponent />
-          </motion.div> */}
-          <div className="fixed top-10 right-0 z-30"> <MobileNavbar /></div>
-         
+          </motion.div>
+          {/* <div className="fixed top-10 right-0 z-30"> <MobileNavbar /></div> */}
 
-          {/* {hasAnimated&&
-          <div className="w-[15vw] h-screen absolute bg-transparent backdrop-blur-md z-10 box-shadow "></div>
-          } */}
           <motion.div
-            style={{ x }}
+            style={{x}}
             ref={refreshRef}
             className="flex relative h-screen w-[350vw]"
           >
-            <Homepage className="snap-end" />
-            <About className="snap-end" />
-            <Timer className="snap-end" />
-            <Footer className="snap-end" />
+            <Homepage />
+
+            <About />
+            <Timer />
+            <Footer />
           </motion.div>
         </div>
       </section>

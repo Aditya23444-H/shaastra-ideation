@@ -1,0 +1,25 @@
+.custom-cursor {
+    position: fixed;
+    width: 20px; /* Adjust size as needed */
+    height: 20px;
+    border-radius: 50%; /*Circular cursor*/
+    background-color: #9701d0; /* Customize color */
+    pointer-events: none; /* Prevent interference with mouse events */
+    transform: translate(-50%, -50%); /* Center the cursor */
+    transition: transform 0.1s ease; /* Smooth transition */
+    z-index: 9999; /* Make sure it appears above other elements */
+    animation: cursor 1s infinite;
+    outline-color: #9701d0;
+	outline-style: solid;
+	outline-width: 2px;
+  }
+  
+  @keyframes cursor {
+	from {
+    outline-offset: 0px;
+	}
+	to{
+		outline-offset: 10px;
+		outline-color: transparent;
+	}
+}
