@@ -6,14 +6,15 @@ import About from "./pages/About";
 import Timer from "./pages/Timer";
 import Footer from "./pages/Footer";
 import NavbarComponent from "./pages/NavbarComponent";
+import MobileNavbar from "./navbarcomponents/MobileNavbar";
 
 const App = () => {
   const [isClock, setIsClock] = useState(false);
   const ref = useRef(null);
   const refreshRef = useRef(null);
-  // const [hasScrolled,setHasScrolled] = useState(false);
+  const [hasScrolled,setHasScrolled] = useState(false);
   const [isMoved, setIsMoved] = useState(false);
-  const [hasAnimated,setHasAnimated] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -43,32 +44,16 @@ const App = () => {
   // console.log(hasScrolled);
 
   return (
-    <ToggleContext.Provider value={{ isClock, setIsClock, hasAnimated, setIsMoved,isMoved }}>
+    <ToggleContext.Provider
+      value={{ isClock, setIsClock, hasAnimated, setIsMoved, isMoved }}
+    >
       <section
         ref={ref}
         className="relative h-[400vh]"
         style={{ scrollBehavior: "smooth" }}
       >
-        <div className="flex sticky top-0 h-screen w-max bg-p6">
+        <div className="flex sticky top-0 h-screen bg-p6 w-max z-20">
           {/* <motion.div
-              key={hasScrolled && "scrolled" }
-              variants={{
-                hidden: { opacity:0, y:"100vh"},
-                visible:{
-                  opacity:1,
-                  y:0,
-                  transition:{
-                    duration:1, delay:4, type:"spring"
-                  }
-                }
-              }}
-              style={hasScrolled?{transform:"translateX(-10%)"}:{x, left:"10%"}}
-              initial="hidden"
-              animate="visible"
-              className="w-[30vw] h-[30vw] absolute top-[20%] rounded-full bg-transparent backdrop-blur-md z-20 flex shadow-right justify-center items-center">
-              <NavbarComponent/>
-              </motion.div> : */}
-          <motion.div
             className="w-min absolute rounded-full bg-transparent z-20 flex "
             animate={{
               x: isMoved ? 160 : 0, // Adjust the 100 value for the desired x-translation
@@ -78,7 +63,9 @@ const App = () => {
             onClick={() => setIsMoved(!isMoved)}
           >
             <NavbarComponent />
-          </motion.div>
+          </motion.div> */}
+          <div className="fixed top-10 right-0 z-30"> <MobileNavbar /></div>
+         
 
           {/* {hasAnimated&&
           <div className="w-[15vw] h-screen absolute bg-transparent backdrop-blur-md z-10 box-shadow "></div>
