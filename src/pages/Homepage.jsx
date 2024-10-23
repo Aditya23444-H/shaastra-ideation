@@ -79,18 +79,3 @@ export default function Homepage() {
     </div>
   );
 }
-
-{/* <motion.div 
-            variants={{
-              hidden: { opacity:0, y:"100vh"},
-              visible:{
-                opacity:1,
-                y:0,
-                transition:{
-                  duration:1, delay:2, type:"spring"
-                }
-              }
-            }}
-            className="w-full h-full z-20 flex justify-center items-center">
-            <NavbarComponent/>
-           </motion.div> */}
