@@ -2,45 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
+.menuvisible {
+  @apply flex flex-col fixed h-screen gap-4 top-0 right-0 bg-p7a2 p-10;
+}
+
+.list-ham {
+  @apply text-lg text-white border-b-2 border-r-2 border-l-0 border-t-0 w-40 border-transparent hover:border-p5 hover:scale-105;
+}
+
 @layer {
-  .font-bangers{
+  *{
+    cursor: none;
+  }
+  .bgImg {
+    background-image: url("./assets/bgImg.png");
+    background-size: 100vw;
+    /* background-position: center; */
+    /* background-repeat: no-repeat; */
+  }
+  .font-bangers {
     font-family: "Bangers", system-ui;
-  font-weight: 400;
-  font-style: normal;
+    font-weight: 400;
+    font-style: normal;
   }
-  
-  .font-londring{
+  .text-shadow-md {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .font-londring {
     font-family: "Londrina Sketch", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-weight: 400;
+    font-style: normal;
   }
 
-  .font-inika{
+  .font-inika {
     font-family: "Inika", serif;
-  font-weight: 700;
-  font-style: normal;
+    font-weight: 700;
+    font-style: normal;
   }
 
-  .box-shadow{
+  .box-shadow {
     box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
   }
 
-  .text-border{
-    text-shadow: 7px 7px 0px #672391,15px 15px 0px   #a035ae ;
+  .text-border {
+    text-shadow: 7px 7px 0px #672391, 15px 15px 0px #a035ae;
   }
 
-  .text-border-small{
-    text-shadow: 7px 7px 0px #672391,7px 7px 0px   #a035ae ;
+  .text-border-small {
+    text-shadow: 7px 7px 0px #672391, 7px 7px 0px #a035ae;
   }
 
-  body::-webkit-scrollbar{
-    display:none;
+  body::-webkit-scrollbar {
+    display: none;
   }
 
-  body{
-    overflow-x:hidden
+  body {
+    overflow-x: hidden;
   }
-  
+
   @keyframes spinR {
     to {
       transform: rotate(360deg);
@@ -48,7 +68,7 @@
   }
 
   .animate-spinRight {
-    animation: spinR 4s linear infinite;
+    animation: spinR 100s linear infinite;
   }
 
   @keyframes spinL {
@@ -59,7 +79,7 @@
   }
 
   .animate-spinLeft {
-    animation: spinL 4s linear infinite;
+    animation: spinL 100s linear infinite;
   }
 
   .animate-pause {
