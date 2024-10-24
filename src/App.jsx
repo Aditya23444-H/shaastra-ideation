@@ -6,72 +6,86 @@ import About from "./pages/About";
 import Timer from "./pages/Timer";
 import Footer from "./pages/Footer";
 import NavbarComponent from "./pages/NavbarComponent";
-import { div } from "framer-motion/client";
+import Cursor from "./cursor/Cursor";
+// import MobileNavbar from "./navbarcomponents/MobileNavbar";
 
 const App = () => {
-  const [isClock,setIsClock] = useState(false);
+  const [isClock, setIsClock] = useState(false);
   const ref = useRef(null);
-  const [hasScrolled,setHasScrolled] = useState(false);
+  const refreshRef = useRef(null);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const [isMoved, setIsMoved] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
+    window.scrollTo(0, 0);
     const handleScroll = () => {
       const triggerPoint = window.innerHeight / 2;
 
-      if(window.scrollY >= triggerPoint){
+      if (window.scrollY >= triggerPoint) {
         setHasScrolled(true);
-      }else{
+        setHasAnimated(true);
+      } else {
         setHasScrolled(false);
       }
-    }
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    }
-  },[])
+    };
+    window.addEventListener("scroll", handleScroll);
 
-  const {scrollYProgress} = useScroll({
-    target:ref,
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
   });
 
-  const x = useTransform(scrollYProgress, [0,1], ["0px", "-210vw"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0px", "-200vw"]);
+  // const t = hasScrolled?1:4;
+  // console.log(hasScrolled);
 
   return (
-  <ToggleContext.Provider value={{isClock,setIsClock}}>
-    <section ref={ref} className="relative h-[400vh]"
-    style={{ scrollBehavior: "smooth" }}>
-      <div className="flex sticky top-0 h-screen w-max bg-p6">
-        
+    <ToggleContext.Provider
+      value={{ isClock, setIsClock, hasAnimated, setIsMoved, isMoved }}
+    >
+      <Cursor/>
+      <section
+        ref={ref}
+        className="relative h-[400vh]"
+        style={{ scrollBehavior: "smooth" }}
+      >
+        <div
+          className="flex sticky top-0 h-screen bg-p6 w-max z-20 bgImg"
+          
+        >
           <motion.div
-            variants={{
-              hidden: { opacity:0, y:"100vh"},
-              visible:{
-                opacity:1,
-                y:0,
-                transition:{
-                  duration:1, delay:4, type:"spring"
-                }
-              }
+            className="w-min absolute rounded-full bg-transparent z-20 flex "
+            animate={{
+              x: isMoved ? 160 : 0, // Adjust the 100 value for the desired x-translation
+              // width:isMoved?"30vw":"25vw",
             }}
-            style={hasScrolled?{transform:"translateX(-10%)"}:{x, left:"10%"}}
-            initial="hidden"
-            animate="visible"
-            className="w-[30vw] h-[30vw] absolute top-[20%] rounded-full bg-transparent backdrop-blur-md z-20 flex box-shadow justify-center items-center">
-            <NavbarComponent/>
+            transition={{ duration: 0.5 }} // Animation duration
+            onClick={() => setIsMoved(!isMoved)}
+          >
+            <NavbarComponent />
           </motion.div>
-          {hasScrolled&&
-          <div className="w-[15vw] h-screen bg-transparent backdrop-blur-md z-10 box-shadow "></div>
-          }
-          <motion.div style={{x}} className="flex relative h-screen w-[350vw]">
-        
-          {/* <div className="w-[500px] h-screen bg-red-100"></div>  */}
-          <Homepage/>
-          <About/>
-          <Timer/>
-          <Footer/>
-        </motion.div>
-      </div>
-    </section>
-  </ToggleContext.Provider> );
+          {/* <div className="fixed top-10 right-0 z-30"> <MobileNavbar /></div> */}
+
+          <motion.div
+            style={{x}}
+            ref={refreshRef}
+            className="flex relative h-screen w-[350vw]"
+          >
+            <Homepage />
+
+            <About />
+            <Timer />
+            <Footer />
+          </motion.div>
+        </div>
+      </section>
+    </ToggleContext.Provider>
+  );
 };
 
 export default App;
