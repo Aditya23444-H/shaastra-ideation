@@ -60,6 +60,7 @@ const TestMenuComponent = () => {
                 top: "50%",
                 left: "50%",
                 transform: `translate(${x}px, ${y}px) translate(-50%, -50%)`,
+                pointerEvents:`${isMoved?"":"none"}`
               }}
             >
               <div

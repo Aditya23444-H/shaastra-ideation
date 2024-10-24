@@ -17,8 +17,6 @@
   .bgImg {
     background-image: url("./assets/bgImg.png");
     background-size: 100vw;
-    /* background-position: center; */
-    /* background-repeat: no-repeat; */
   }
   .font-bangers {
     font-family: "Bangers", system-ui;
@@ -59,27 +57,6 @@
 
   body {
     overflow-x: hidden;
-  }
-
-  @keyframes spinR {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  .animate-spinRight {
-    animation: spinR 100s linear infinite;
-  }
-
-  @keyframes spinL {
-    to {
-      transform: rotate(-360deg);
-      transform-origin: center;
-    }
-  }
-
-  .animate-spinLeft {
-    animation: spinL 100s linear infinite;
   }
 
   .animate-pause {

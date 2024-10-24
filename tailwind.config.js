@@ -16,7 +16,21 @@ export default {
       },
       boxShadow:{
         'right': '10px 0px 15px -3px rgba(0, 0, 0, 0.1)', // Only right side
-      }
+      },
+      // keyframes: {
+      //   typing: {
+      //     'from': { width: '0' },
+      //     'to': { width: '100%' },
+      //   },
+      //   blink: {
+      //     'from, to': { 'border-color': 'transparent' },
+      //     '50%': { 'border-color': 'black' },
+      //   },
+      // },
+      // animation: {
+      //   typing: 'typing 3.5s steps(40, end) forwards', // Typing effect
+      //   blink: 'blink 0.75s step-end infinite', // Optional caret blink
+      // },
     },
   },
   plugins: [
