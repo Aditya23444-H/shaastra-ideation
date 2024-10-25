@@ -13,7 +13,6 @@ const App = () => {
   const [isClock, setIsClock] = useState(false);
   const ref = useRef(null);
   const refreshRef = useRef(null);
-  const [hasScrolled, setHasScrolled] = useState(false);
   const [isMoved, setIsMoved] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
 
@@ -23,10 +22,7 @@ const App = () => {
       const triggerPoint = window.innerHeight / 2;
 
       if (window.scrollY >= triggerPoint) {
-        setHasScrolled(true);
         setHasAnimated(true);
-      } else {
-        setHasScrolled(false);
       }
     };
     window.addEventListener("scroll", handleScroll);
