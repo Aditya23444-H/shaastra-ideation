@@ -7,6 +7,7 @@ import Timer from "./pages/Timer";
 import Footer from "./pages/Footer";
 import NavbarComponent from "./pages/NavbarComponent";
 import Cursor from "./cursor/Cursor";
+// import MobileNavbar from "./navbarcomponents/MobileNavbar";
 
 const App = () => {
   const [isClock, setIsClock] = useState(false);
